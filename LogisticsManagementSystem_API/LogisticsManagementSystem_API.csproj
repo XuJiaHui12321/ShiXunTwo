@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="NLog" Version="4.7.10" />
+    <PackageReference Include="NLog.Config" Version="4.7.10" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.13.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogisticsManagementSystem_Common\LogisticsManagementSystem_Common.csproj" />
+    <ProjectReference Include="..\LogisticsManagementSystem_DAL\LogisticsManagementSystem_DAL.csproj" />
+    <ProjectReference Include="..\LogisticsManagementSystem_IDAL\LogisticsManagementSystem_IDAL.csproj" />
+  </ItemGroup>
+
+</Project>

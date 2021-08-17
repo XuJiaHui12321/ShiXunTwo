@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="MySql.Data" Version="8.0.26" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogisticsManagementSystem_Common\LogisticsManagementSystem_Common.csproj" />
+    <ProjectReference Include="..\LogisticsManagementSystem_IDAL\LogisticsManagementSystem_IDAL.csproj" />
+  </ItemGroup>
+
+</Project>
