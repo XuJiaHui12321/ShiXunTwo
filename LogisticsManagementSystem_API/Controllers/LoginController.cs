@@ -41,7 +41,8 @@ namespace LogisticsManagementSystem_API.Controllers
             }
             logger.LogError("12");
             var claim = new Claim[]{
-            new Claim("UserName", "lb")
+            new Claim("UserName", Name),
+            new Claim("UserPassword","123")
         };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtconfig.SigningKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -59,6 +60,11 @@ namespace LogisticsManagementSystem_API.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(string id)
         {
+            var user = HttpContext.User.Claims.ToList();
+            var header = Request.Headers;
+            //string token = header.ContainsKey("Authorization");
+            
+            
             return "value";
         }
         [Authorize]
@@ -68,6 +74,13 @@ namespace LogisticsManagementSystem_API.Controllers
         {
             UserModel userModel = user.UserLogin(UserId);
             return Ok(userModel);
+        }
+        [HttpGet,Route("gettoken")]
+        public ActionResult JieXi(string token)
+        {
+           
+            var authInfo = Jose.JWT.Payload<UserModel>(token.Replace("Bearer ", token));
+            return Ok(authInfo);
         }
         
     }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="jose-jwt" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="NLog" Version="4.7.10" />
@@ -19,6 +20,10 @@
     <ProjectReference Include="..\LogisticsManagementSystem_Common\LogisticsManagementSystem_Common.csproj" />
     <ProjectReference Include="..\LogisticsManagementSystem_DAL\LogisticsManagementSystem_DAL.csproj" />
     <ProjectReference Include="..\LogisticsManagementSystem_IDAL\LogisticsManagementSystem_IDAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="image\" />
   </ItemGroup>
 
 </Project>
