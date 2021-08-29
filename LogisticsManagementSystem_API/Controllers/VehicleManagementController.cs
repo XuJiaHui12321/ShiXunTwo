@@ -51,14 +51,16 @@ namespace LogisticsManagementSystem_API.Controllers
         [HttpGet, Route("getimg")]
         public IActionResult Getimg()
         {
-            using (var sw = new FileStream(Directory.GetCurrentDirectory() + @"\image\catemenubg.png", FileMode.Open))
-            {
-                var bytes = new byte[sw.Length];
-                sw.Read(bytes, 0, bytes.Length);
-                sw.Close();
-                return new FileContentResult(bytes, "image/jpeg");
-            }
+            //using (var sw = new FileStream(Directory.GetCurrentDirectory() + @"\image\catemenubg.png", FileMode.Open))
+            //{
+            //    var bytes = new byte[sw.Length];
+            //    sw.Read(bytes, 0, bytes.Length);
+            //    sw.Close();
+            //    return new FileContentResult(bytes, "image/jpeg");
+            //}
+            return Ok("http://localhost:36555/image/catemenubg.png");
         }
+       
 
     }
 }
