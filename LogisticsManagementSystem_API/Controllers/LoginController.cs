@@ -34,53 +34,83 @@ namespace LogisticsManagementSystem_API.Controllers
         [HttpGet]
         public ActionResult<string> LoginVerification(string Name="",string PassWord="")
         {
-            UserModel userModel= user.UserLogin(Name,PassWord);
-            if (userModel==null)
+            try
             {
-                return "登陆失败";
-            }
-            logger.LogError("12");
-            var claim = new Claim[]{
+                UserModel userModel = user.UserLogin(Name, PassWord);
+                if (userModel == null)
+                {
+                    return "登陆失败";
+                }
+                logger.LogInformation(Name+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                var claim = new Claim[]{
             new Claim("UserName", Name),
             new Claim("UserPassword","123")
         };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtconfig.SigningKey));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(
-                issuer: jwtconfig.Issuer,
-                audience: jwtconfig.Audience,
-                claims: claim,
-                notBefore: DateTime.Now,
-                expires: DateTime.Now.AddSeconds(30),
-                signingCredentials: creds);
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtconfig.SigningKey));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var token = new JwtSecurityToken(
+                    issuer: jwtconfig.Issuer,
+                    audience: jwtconfig.Audience,
+                    claims: claim,
+                    notBefore: DateTime.Now,
+                    expires: DateTime.Now.AddSeconds(30),
+                    signingCredentials: creds);
 
-            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token),UserId=userModel.UserId });
+                return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token), UserId = userModel.UserId });
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
         [Authorize]
         [HttpGet("{id}")]
         public ActionResult<string> Get(string id)
         {
-            var user = HttpContext.User.Claims.ToList();
-            var header = Request.Headers;
-            //string token = header.ContainsKey("Authorization");
-            
-            
-            return "value";
+            try
+            {
+                var user = HttpContext.User.Claims.ToList();
+                var header = Request.Headers;
+                //string token = header.ContainsKey("Authorization");
+
+
+                return "value";
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         [Authorize]
 
         [HttpGet("GetUser")]
         public ActionResult GetUser(int UserId)
         {
-            UserModel userModel = user.UserLogin(UserId);
-            return Ok(userModel);
+            try
+            {
+                UserModel userModel = user.UserLogin(UserId);
+                return Ok(userModel);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         [HttpGet,Route("gettoken")]
-        public ActionResult JieXi(string token)
+        public ActionResult Analysis(string token)
         {
-           
-            var authInfo = Jose.JWT.Payload<UserModel>(token.Replace("Bearer ", token));
-            return Ok(authInfo);
+            try
+            {
+
+                var authInfo = Jose.JWT.Payload<UserModel>(token.Replace("Bearer ", token));
+                return Ok(authInfo);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
         
     }
